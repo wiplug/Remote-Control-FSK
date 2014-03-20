@@ -14,13 +14,30 @@
 		CBA0D96318D7A2AE0049BEAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D96218D7A2AE0049BEAA /* main.m */; };
 		CBA0D96718D7A2AF0049BEAA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D96618D7A2AF0049BEAA /* AppDelegate.m */; };
 		CBA0D96A18D7A2AF0049BEAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBA0D96818D7A2AF0049BEAA /* Main.storyboard */; };
-		CBA0D96D18D7A2AF0049BEAA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D96C18D7A2AF0049BEAA /* ViewController.m */; };
 		CBA0D96F18D7A2AF0049BEAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBA0D96E18D7A2AF0049BEAA /* Images.xcassets */; };
 		CBA0D97618D7A2AF0049BEAA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA0D97518D7A2AF0049BEAA /* XCTest.framework */; };
 		CBA0D97718D7A2AF0049BEAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA0D95618D7A2AE0049BEAA /* Foundation.framework */; };
 		CBA0D97818D7A2AF0049BEAA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA0D95A18D7A2AE0049BEAA /* UIKit.framework */; };
 		CBA0D98018D7A2AF0049BEAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBA0D97E18D7A2AF0049BEAA /* InfoPlist.strings */; };
 		CBA0D98218D7A2AF0049BEAA /* ISEL_RemotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D98118D7A2AF0049BEAA /* ISEL_RemotoTests.m */; };
+		CBFFE07618D7A7CA004A3694 /* power.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE07518D7A7CA004A3694 /* power.png */; };
+		CBFFE07818D7A911004A3694 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE07718D7A911004A3694 /* button.png */; };
+		CBFFE07A18D7AC10004A3694 /* selected_device.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE07918D7AC10004A3694 /* selected_device.png */; };
+		CBFFE07D18D7AF01004A3694 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFFE07C18D7AF01004A3694 /* MasterViewController.m */; };
+		CBFFE08318D7B139004A3694 /* container.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE08218D7B139004A3694 /* container.png */; };
+		CBFFE08718D7B2F1004A3694 /* vol_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE08618D7B2F1004A3694 /* vol_plus.png */; };
+		CBFFE08918D7B360004A3694 /* vol_minus.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE08818D7B360004A3694 /* vol_minus.png */; };
+		CBFFE08C18D7B49D004A3694 /* ch_minus.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE08A18D7B49D004A3694 /* ch_minus.png */; };
+		CBFFE08D18D7B49D004A3694 /* ch_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE08B18D7B49D004A3694 /* ch_plus.png */; };
+		CBFFE08F18D7B4AE004A3694 /* nav_container.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE08E18D7B4AE004A3694 /* nav_container.png */; };
+		CBFFE09118D7B775004A3694 /* button_center.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE09018D7B775004A3694 /* button_center.png */; };
+		CBFFE09618D7C4E2004A3694 /* arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE09218D7C4E2004A3694 /* arrow_down.png */; };
+		CBFFE09718D7C4E2004A3694 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE09318D7C4E2004A3694 /* arrow_left.png */; };
+		CBFFE09818D7C4E2004A3694 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE09418D7C4E2004A3694 /* arrow_right.png */; };
+		CBFFE09918D7C4E2004A3694 /* arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFFE09518D7C4E2004A3694 /* arrow_up.png */; };
+		CBFFE09D18D7CFDE004A3694 /* EncodeSignalFSK.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFFE09C18D7CFDE004A3694 /* EncodeSignalFSK.m */; };
+		CBFFE0A218D7FFDD004A3694 /* RemoteControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFFE0A118D7FFDD004A3694 /* RemoteControl.m */; };
+		CBFFE0A418D8047F004A3694 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFFE0A318D8047F004A3694 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +62,33 @@
 		CBA0D96518D7A2AE0049BEAA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CBA0D96618D7A2AF0049BEAA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CBA0D96918D7A2AF0049BEAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CBA0D96B18D7A2AF0049BEAA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CBA0D96C18D7A2AF0049BEAA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CBA0D96E18D7A2AF0049BEAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CBA0D97418D7A2AF0049BEAA /* ISEL RemotoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ISEL RemotoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBA0D97518D7A2AF0049BEAA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		CBA0D97D18D7A2AF0049BEAA /* ISEL RemotoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ISEL RemotoTests-Info.plist"; sourceTree = "<group>"; };
 		CBA0D97F18D7A2AF0049BEAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CBA0D98118D7A2AF0049BEAA /* ISEL_RemotoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISEL_RemotoTests.m; sourceTree = "<group>"; };
+		CBFFE07518D7A7CA004A3694 /* power.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = power.png; path = "../../../../Documents/Conceptos Admisel/power.png"; sourceTree = "<group>"; };
+		CBFFE07718D7A911004A3694 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button.png; path = "../../../../Documents/Conceptos Admisel/button.png"; sourceTree = "<group>"; };
+		CBFFE07918D7AC10004A3694 /* selected_device.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected_device.png; path = "../../../../Documents/Conceptos Admisel/selected_device.png"; sourceTree = "<group>"; };
+		CBFFE07B18D7AF01004A3694 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		CBFFE07C18D7AF01004A3694 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		CBFFE08218D7B139004A3694 /* container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = container.png; path = "../../../../Documents/Conceptos Admisel/container.png"; sourceTree = "<group>"; };
+		CBFFE08618D7B2F1004A3694 /* vol_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vol_plus.png; path = "../../../../Documents/Conceptos Admisel/vol_plus.png"; sourceTree = "<group>"; };
+		CBFFE08818D7B360004A3694 /* vol_minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vol_minus.png; path = "../../../../Documents/Conceptos Admisel/vol_minus.png"; sourceTree = "<group>"; };
+		CBFFE08A18D7B49D004A3694 /* ch_minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ch_minus.png; path = "../../../../Documents/Conceptos Admisel/ch_minus.png"; sourceTree = "<group>"; };
+		CBFFE08B18D7B49D004A3694 /* ch_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ch_plus.png; path = "../../../../Documents/Conceptos Admisel/ch_plus.png"; sourceTree = "<group>"; };
+		CBFFE08E18D7B4AE004A3694 /* nav_container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nav_container.png; path = "../../../../Documents/Conceptos Admisel/nav_container.png"; sourceTree = "<group>"; };
+		CBFFE09018D7B775004A3694 /* button_center.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_center.png; path = "../../../../Documents/Conceptos Admisel/button_center.png"; sourceTree = "<group>"; };
+		CBFFE09218D7C4E2004A3694 /* arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_down.png; path = "../../../../Documents/Conceptos Admisel/arrow_down.png"; sourceTree = "<group>"; };
+		CBFFE09318D7C4E2004A3694 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_left.png; path = "../../../../Documents/Conceptos Admisel/arrow_left.png"; sourceTree = "<group>"; };
+		CBFFE09418D7C4E2004A3694 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_right.png; path = "../../../../Documents/Conceptos Admisel/arrow_right.png"; sourceTree = "<group>"; };
+		CBFFE09518D7C4E2004A3694 /* arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_up.png; path = "../../../../Documents/Conceptos Admisel/arrow_up.png"; sourceTree = "<group>"; };
+		CBFFE09B18D7CFDE004A3694 /* EncodeSignalFSK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodeSignalFSK.h; sourceTree = SOURCE_ROOT; };
+		CBFFE09C18D7CFDE004A3694 /* EncodeSignalFSK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodeSignalFSK.m; sourceTree = SOURCE_ROOT; };
+		CBFFE0A018D7FFDD004A3694 /* RemoteControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControl.h; sourceTree = "<group>"; };
+		CBFFE0A118D7FFDD004A3694 /* RemoteControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControl.m; sourceTree = "<group>"; };
+		CBFFE0A318D8047F004A3694 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBFFE0A418D8047F004A3694 /* AudioToolbox.framework in Frameworks */,
 				CBA0D95918D7A2AE0049BEAA /* CoreGraphics.framework in Frameworks */,
 				CBA0D95B18D7A2AE0049BEAA /* UIKit.framework in Frameworks */,
 				CBA0D95718D7A2AE0049BEAA /* Foundation.framework in Frameworks */,
@@ -101,6 +138,7 @@
 		CBA0D95518D7A2AE0049BEAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CBFFE0A318D8047F004A3694 /* AudioToolbox.framework */,
 				CBA0D95618D7A2AE0049BEAA /* Foundation.framework */,
 				CBA0D95818D7A2AE0049BEAA /* CoreGraphics.framework */,
 				CBA0D95A18D7A2AE0049BEAA /* UIKit.framework */,
@@ -112,11 +150,8 @@
 		CBA0D95C18D7A2AE0049BEAA /* ISEL Remoto */ = {
 			isa = PBXGroup;
 			children = (
-				CBA0D96518D7A2AE0049BEAA /* AppDelegate.h */,
-				CBA0D96618D7A2AF0049BEAA /* AppDelegate.m */,
-				CBA0D96818D7A2AF0049BEAA /* Main.storyboard */,
-				CBA0D96B18D7A2AF0049BEAA /* ViewController.h */,
-				CBA0D96C18D7A2AF0049BEAA /* ViewController.m */,
+				CBFFE09F18D7E268004A3694 /* Views */,
+				CBFFE09A18D7CF9D004A3694 /* EncodeSignal */,
 				CBA0D96E18D7A2AF0049BEAA /* Images.xcassets */,
 				CBA0D95D18D7A2AE0049BEAA /* Supporting Files */,
 			);
@@ -126,6 +161,20 @@
 		CBA0D95D18D7A2AE0049BEAA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CBFFE09218D7C4E2004A3694 /* arrow_down.png */,
+				CBFFE09318D7C4E2004A3694 /* arrow_left.png */,
+				CBFFE09418D7C4E2004A3694 /* arrow_right.png */,
+				CBFFE09518D7C4E2004A3694 /* arrow_up.png */,
+				CBFFE09018D7B775004A3694 /* button_center.png */,
+				CBFFE08E18D7B4AE004A3694 /* nav_container.png */,
+				CBFFE08A18D7B49D004A3694 /* ch_minus.png */,
+				CBFFE08B18D7B49D004A3694 /* ch_plus.png */,
+				CBFFE08818D7B360004A3694 /* vol_minus.png */,
+				CBFFE08618D7B2F1004A3694 /* vol_plus.png */,
+				CBFFE08218D7B139004A3694 /* container.png */,
+				CBFFE07918D7AC10004A3694 /* selected_device.png */,
+				CBFFE07718D7A911004A3694 /* button.png */,
+				CBFFE07518D7A7CA004A3694 /* power.png */,
 				CBA0D95E18D7A2AE0049BEAA /* ISEL Remoto-Info.plist */,
 				CBA0D95F18D7A2AE0049BEAA /* InfoPlist.strings */,
 				CBA0D96218D7A2AE0049BEAA /* main.m */,
@@ -150,6 +199,29 @@
 				CBA0D97E18D7A2AF0049BEAA /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CBFFE09A18D7CF9D004A3694 /* EncodeSignal */ = {
+			isa = PBXGroup;
+			children = (
+				CBFFE09B18D7CFDE004A3694 /* EncodeSignalFSK.h */,
+				CBFFE09C18D7CFDE004A3694 /* EncodeSignalFSK.m */,
+				CBFFE0A018D7FFDD004A3694 /* RemoteControl.h */,
+				CBFFE0A118D7FFDD004A3694 /* RemoteControl.m */,
+			);
+			name = EncodeSignal;
+			sourceTree = "<group>";
+		};
+		CBFFE09F18D7E268004A3694 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CBA0D96818D7A2AF0049BEAA /* Main.storyboard */,
+				CBA0D96518D7A2AE0049BEAA /* AppDelegate.h */,
+				CBA0D96618D7A2AF0049BEAA /* AppDelegate.m */,
+				CBFFE07B18D7AF01004A3694 /* MasterViewController.h */,
+				CBFFE07C18D7AF01004A3694 /* MasterViewController.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +300,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBFFE09718D7C4E2004A3694 /* arrow_left.png in Resources */,
+				CBFFE08D18D7B49D004A3694 /* ch_plus.png in Resources */,
+				CBFFE09118D7B775004A3694 /* button_center.png in Resources */,
 				CBA0D96F18D7A2AF0049BEAA /* Images.xcassets in Resources */,
+				CBFFE08C18D7B49D004A3694 /* ch_minus.png in Resources */,
+				CBFFE08F18D7B4AE004A3694 /* nav_container.png in Resources */,
+				CBFFE08918D7B360004A3694 /* vol_minus.png in Resources */,
+				CBFFE07818D7A911004A3694 /* button.png in Resources */,
+				CBFFE07A18D7AC10004A3694 /* selected_device.png in Resources */,
+				CBFFE08718D7B2F1004A3694 /* vol_plus.png in Resources */,
+				CBFFE09818D7C4E2004A3694 /* arrow_right.png in Resources */,
+				CBFFE09618D7C4E2004A3694 /* arrow_down.png in Resources */,
+				CBFFE07618D7A7CA004A3694 /* power.png in Resources */,
 				CBA0D96118D7A2AE0049BEAA /* InfoPlist.strings in Resources */,
+				CBFFE09918D7C4E2004A3694 /* arrow_up.png in Resources */,
 				CBA0D96A18D7A2AF0049BEAA /* Main.storyboard in Resources */,
+				CBFFE08318D7B139004A3694 /* container.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +335,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBA0D96D18D7A2AF0049BEAA /* ViewController.m in Sources */,
+				CBFFE09D18D7CFDE004A3694 /* EncodeSignalFSK.m in Sources */,
 				CBA0D96718D7A2AF0049BEAA /* AppDelegate.m in Sources */,
+				CBFFE07D18D7AF01004A3694 /* MasterViewController.m in Sources */,
 				CBA0D96318D7A2AE0049BEAA /* main.m in Sources */,
+				CBFFE0A218D7FFDD004A3694 /* RemoteControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +467,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ISEL Remoto/ISEL Remoto-Prefix.pch";
 				INFOPLIST_FILE = "ISEL Remoto/ISEL Remoto-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -392,6 +481,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ISEL Remoto/ISEL Remoto-Prefix.pch";
 				INFOPLIST_FILE = "ISEL Remoto/ISEL Remoto-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -456,6 +546,7 @@
 				CBA0D98718D7A2AF0049BEAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CBA0D98818D7A2AF0049BEAA /* Build configuration list for PBXNativeTarget "ISEL RemotoTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +555,7 @@
 				CBA0D98A18D7A2AF0049BEAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
