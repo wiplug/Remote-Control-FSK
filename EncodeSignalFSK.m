@@ -116,12 +116,12 @@ const  double sampleRate = 44100;
         //Configuracion de la señal FSK
         amplitude =   1;
         //4.45ms en bajo despues del pulso lider ( 1.45 - 1 ) = 0.45Ms
-         phaseShiftInPi = 1.45;
+         phaseShiftInPi = 1.29;
   
         heading = @"^";
-        tailing = @"___";
+        tailing = @"________________";
          lowFreq = 889;
-         highFreq = 54;
+         highFreq = 44;
     }
     
     
@@ -132,12 +132,13 @@ const  double sampleRate = 44100;
         //Configuracion de la señal FSK
         amplitude =   1;
         
-        phaseShiftInPi = 1.9;
+        //pulso con el que inicia el desplazamiento..
+        phaseShiftInPi = 1.40;
         
-        heading = @"^^^^____";
+        heading = @"^^^^^^^^^^^^^^^^^^";
         tailing = @"";
-        lowFreq = 65;
-        highFreq = 889;
+        lowFreq = 14;
+        highFreq = 480;
     }
     
 }
@@ -166,70 +167,49 @@ const  double sampleRate = 44100;
         
     }else{
      [self initAudioSignal];
-    
+        
+    //EN USO
+    status = 1;
+    qIndex = 0;
+        
      bit0 =  [@"_" UTF8String];
      bit1 = [@"^" UTF8String];
         
   
     
     [self ConfigurePulseLeaderWithDataInMs:@"1"];
-        
-    //EN USO
-    status = 1;
-    qIndex = 0;
  
-   
  
-    //Configuracion freciuencia bajo
+    //Configuracion frecuencia
  
-    int lowSteps = round(sampleRate/lowFreq);
-    int lowSize =lowSteps*sizeof(double);
-    
-    //Configuracion freciuencia alto
+    int FrecuencyLowData = round(sampleRate/lowFreq);
+    int lowSize =FrecuencyLowData*sizeof(double);
  
-    int highSteps = round(sampleRate/highFreq);
-    int highSize =highSteps*sizeof(double);
-    
+    int FrecuencyHighData = round(sampleRate/highFreq);
+    int highSize = FrecuencyHighData*sizeof(double);
  
-    
         
         
-    unsigned long bit0Steps = calcBitSteps(bit0, lowSteps, highSteps);
-    unsigned long bit1Steps = calcBitSteps(bit1, lowSteps, highSteps);
-        
- 
-    
     //Creamos array con el tamaño de lowSteps
-    double lowData[lowSteps];
-    //Creamos array con el tamañao de highSteps
-    double highData[highSteps];
+    double BufferForLowData[FrecuencyLowData];
+    double BufferForHighData[FrecuencyHighData];
    
     
-    //calcula FSK y lo guarda en el array que le estamos pasando -> lowData
-        
-    populateCircle(lowData, lowFreq, lowSteps, amplitude, phaseShiftInPi);
-    populateCircle(highData, highFreq, highSteps, amplitude, phaseShiftInPi);
-    
-     
-    double bit0Data[bit0Steps];
-    double bit1Data[bit1Steps];
-    NSLog(@" data AH ? --> %f",*bit0Data);
-    getBitData(bit0, bit0Data, lowData, lowSteps, highData, highSteps);
-    NSLog(@" data AH ? --> %f",*bit0Data);
-    
-    
-    getBitData(bit1, bit1Data, lowData, lowSteps, highData, highSteps);
-    
+    //calcula FSK y guarda el pulso en alto en el buffer asignado BufferForLowData | BufferForHighData
     
         
+    GenerateFSKEncoding(BufferForLowData, lowFreq, FrecuencyLowData, amplitude, phaseShiftInPi);
+    GenerateFSKEncoding(BufferForHighData, highFreq, FrecuencyHighData, amplitude, phaseShiftInPi);
+    //en este punto tenemos guardado en cada buffer el tamaño de la señal en bajo y alto.
+      
     
-    // CONTAMOS CUANTOS BIS SE ENVIARAN PARA PODER PARA CUANDO SE TERMINE DE ENVIAR
+    // CONTAMOS CUANTOS BIS SE ENVIARAN PARA PODER PARAR CUANDO SE TERMINE DE ENVIAR
     for (int i=0; i<heading.length; ++i) {
         NSString* h = [heading substringWithRange:NSMakeRange(i, 1)];
         if([h isEqualToString:@"_"]) {
-            qSteps+=lowSteps;
+            qSteps+=FrecuencyLowData;
         } else if([h isEqualToString:@"^"]) {
-            qSteps+=highSteps;
+            qSteps+=FrecuencyHighData;
         }
     }
         
@@ -239,72 +219,55 @@ const  double sampleRate = 44100;
     for (int i=0; i<tailing.length; ++i) {
         NSString* t = [tailing substringWithRange:NSMakeRange(i, 1)];
         if([t isEqualToString:@"_"]) {
-            qSteps+=lowSteps;
+            qSteps+=FrecuencyLowData;
             
         } else if([t isEqualToString:@"^"]) {
-            qSteps+=highSteps;
+            qSteps+=FrecuencyHighData;
         }
     }
-    
+  
+        
+        
+        
         //****************************************************************************************
         //****************************************************************************************
         //****************************************************************************************
+        
         
         
         [self ConfigurePulseLeaderWithDataInMs:@"2"];
         
         
+        //Configuracion frecuencia
         
-        //Configuracion freciuencia bajo
+        int FrecuencyLowData2 = round(sampleRate/lowFreq);
+        int lowSize2 =FrecuencyLowData2*sizeof(double);
         
-        int lowSteps2 = round(sampleRate/lowFreq);
-        int lowSize2 = lowSteps2*sizeof(double);
-        
-        //Configuracion freciuencia alto
-        
-        int highSteps2 = round(sampleRate/highFreq);
-        int highSize2 =highSteps2*sizeof(double);
-        
-        
-        
-        
-        
-        unsigned long bit0Steps2 = calcBitSteps(bit0, lowSteps2, highSteps2);
-        unsigned long bit1Steps2 = calcBitSteps(bit1, lowSteps2, highSteps2);
+        int FrecuencyHighData2 = round(sampleRate/highFreq);
+        int highSize2 = FrecuencyHighData2*sizeof(double);
         
         
         
         //Creamos array con el tamaño de lowSteps
-        double lowData2[lowSteps2];
-        //Creamos array con el tamañao de highSteps
-        double highData2[highSteps2];
+        double BufferForLowData2[FrecuencyLowData2];
+        double BufferForHighData2[FrecuencyHighData2];
         
         
-        //calcula FSK y lo guarda en el array que le estamos pasando -> lowData
-        
-        populateCircle(lowData2, lowFreq, lowSteps2, amplitude, phaseShiftInPi);
-        populateCircle(highData2, highFreq, highSteps2, amplitude, phaseShiftInPi);
+        //calcula FSK y guarda el pulso en alto en el buffer asignado BufferForLowData | BufferForHighData
         
         
-        double bit0Data2[bit0Steps2];
-        double bit1Data2[bit1Steps2];
-        NSLog(@" data AH ? --> %f",*bit0Data2);
-        getBitData(bit0, bit0Data2, lowData2, lowSteps2, highData2, highSteps2);
-        NSLog(@" data AH ? --> %f",*bit0Data2);
+        GenerateFSKEncoding(BufferForLowData2, lowFreq, FrecuencyLowData2, amplitude, phaseShiftInPi);
+        GenerateFSKEncoding(BufferForHighData2, highFreq, FrecuencyHighData2, amplitude, phaseShiftInPi);
+        //en este punto tenemos guardado en cada buffer el tamaño de la señal en bajo y alto.
         
         
-        getBitData(bit1, bit1Data2, lowData2, lowSteps2, highData2, highSteps2);
-        
-        
-        
-        
-        // CONTAMOS CUANTOS BIS SE ENVIARAN PARA PODER PARA CUANDO SE TERMINE DE ENVIAR
+        // CONTAMOS CUANTOS BIS SE ENVIARAN PARA PODER PARAR CUANDO SE TERMINE DE ENVIAR
         for (int i=0; i<heading.length; ++i) {
             NSString* h = [heading substringWithRange:NSMakeRange(i, 1)];
             if([h isEqualToString:@"_"]) {
-                qSteps+=lowSteps2;
+                qSteps+=FrecuencyLowData2;
             } else if([h isEqualToString:@"^"]) {
-                qSteps+=highSteps2;
+                qSteps+=FrecuencyHighData2;
             }
         }
         
@@ -314,15 +277,18 @@ const  double sampleRate = 44100;
         for (int i=0; i<tailing.length; ++i) {
             NSString* t = [tailing substringWithRange:NSMakeRange(i, 1)];
             if([t isEqualToString:@"_"]) {
-                qSteps+=lowSteps2;
+                qSteps+=FrecuencyLowData2;
                 
             } else if([t isEqualToString:@"^"]) {
-                qSteps+=highSteps2;
+                qSteps+=FrecuencyHighData2;
             }
         }
         
         
-        //****************************************************************************************
+        
+        
+    
+         //****************************************************************************************
          //****************************************************************************************
          //****************************************************************************************
  
@@ -332,52 +298,208 @@ const  double sampleRate = 44100;
         PulseToSendInSignal = dataQueue;
     
         //PULSO LIDER
-        memcpy(PulseToSendInSignal, highData, highSize);
-        PulseToSendInSignal+=highSteps;
+        memcpy(PulseToSendInSignal, BufferForHighData, highSize);
+        PulseToSendInSignal+=FrecuencyHighData;
    
         
         //Ingresa todos los calculos de los bits en los datos a enviar.. los bits son los que siguen del bit principar, LIDER
   
         //BIT_0 = Alto = 598 Bajo = 534
-        memcpy(PulseToSendInSignal, lowData, lowSize);
-        PulseToSendInSignal+=lowSteps;
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
         
-        
-        
-        
+       
         //BIT_0 = Alto = 598 Bajo = 534
-        memcpy(PulseToSendInSignal, lowData, lowSize);
-        PulseToSendInSignal+=lowSteps;
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
  
         
         //BIT_0 = Alto = 598 Bajo = 534
-        memcpy(PulseToSendInSignal, lowData, lowSize);
-        PulseToSendInSignal+=lowSteps;
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+ 
+        // PULSO DISTINTO
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+ 
+        
+        //Distinto
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+        // PULSO DISTINTO BIT 1
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        
+        //Distinto BIT 0
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+        
+        // PULSO DISTINTO BIT 1
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        
+        
+        //Distinto BIT 0
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+        // PULSO DISTINTO BIT 1
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        
+        //Distinto BIT 0
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+        // PULSO DISTINTO BIT 1
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        
+        
+        //Distinto
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+        // PULSO DISTINTO BIT 1
+        
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        //Distinto
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+         //Distinto BIT 1
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        //Distinto
+        
+        
+        //BIT_0 = Alto = 598 Bajo = 534
+        memcpy(PulseToSendInSignal, BufferForLowData, lowSize);
+        PulseToSendInSignal+=FrecuencyLowData;
+        
+        
+        //Distinto BIT 1
+        //PULSO LIDER
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        memcpy(PulseToSendInSignal, BufferForHighData2, highSize2);
+        PulseToSendInSignal+=FrecuencyHighData2;
+        
+        PulseToSendInSignal = dataQueue;
         
         
         
     
-        
-        //BIT 1
-        memcpy(PulseToSendInSignal, highData2, highSize2);
-        PulseToSendInSignal+=highSteps2;
-        
-        
-        //BIT 0
-        memcpy(PulseToSendInSignal, lowData2, lowSize2);
-        PulseToSendInSignal+=lowSize2;
-  
-        
-      
-        
-  
-        
-    PulseToSendInSignal = dataQueue;
     
-    
-    
-    [self createToneUnit];
-    
+        [self createToneUnit];
     
     
     
@@ -398,52 +520,6 @@ const  double sampleRate = 44100;
     
 }
 
-
-
-
-
-/**
- 
- 
- @summary:
- @param:   bit         Contiene como string los siguientes datos  _ | ^
- @param:   data        Los datos en array ?
- @param:   lowData     Los datos en array ?  double data[lowSteps|highSteps] =  Contiene el periodo en bajo definido por  round(sampleRate/lowFreq) ejem. 441000/900 = 45
- @param:   lowSteps    La frecuencia en bajo dado por round(sampleRate/lowFreq);
- @param:   highData    double data[lowSteps|highSteps] =  Contiene el periodo en bajo|alto definido por   round(sampleRate/highFreq);
- @param:   highSteps   La frecuencia en alto dado por round(sampleRate/lowFreq);
- @return   (void)
- 
- **/
-
-void getBitData(const char* bit, double* data, const double* lowData,int lowSteps, const double* highData, int highSteps){
-    
-    
-    for(int i=0;i<strlen(bit);++i){
-        
-        char c = bit[i];
-        
-        if(c == '_'){
-            
-            //copia los primeros n caracteres del objeto apuntado por s2 al objeto apuntado por s1.
-            //void *memcpy(void *s1, const void *s2, size_t n);
-            memcpy(data, lowData, lowSteps*sizeof(double));
-            data+=lowSteps;
-            
-            
-        }else if(c == '^'){
-            
-            memcpy(data, highData, highSteps*sizeof(double));
-            data+=highSteps;
-            
-        }
-        
-    }
-    
-    
-}
-
-
 /**
  
  
@@ -458,21 +534,19 @@ void getBitData(const char* bit, double* data, const double* lowData,int lowStep
  **/
 
 
-void populateCircle(double* buf, int freq, int steps, float amplitude, float phaseShiftInPi){
+void GenerateFSKEncoding(double* buf, int freq, int steps, float amplitude, float phaseShiftInPi){
     
-    //NSLog(@"buf  %f",buf[0]);
-    
-    //Tiempo
+ 
     double theta=0;
     
     for (int i=0; i<steps; ++i) {
         
         double theta_increment = 2.0 * M_PI * freq / sampleRate;
         
-        //enviamos desplazamiento por PI
+ 
         buf[i] = (sin(theta+phaseShiftInPi*M_PI) * amplitude);
         
-        //NSLog(@"emmiting ->%f",buf[i]);
+     
         theta+=theta_increment;
         
         if (theta > 2.0 * M_PI)
@@ -483,42 +557,8 @@ void populateCircle(double* buf, int freq, int steps, float amplitude, float pha
         
     }
     
-    //NSLog(@"buf  %f",buf[1]);
+ 
 }
-
-
-
-
-
-
-/**
- 
- Calcula cuantos bits hay que enviar , cuantos bits fueron ingresados a traves de Chars o Strings.
- 
- @summary Calculamos cuantos bits se enviaran en total a traves de los strings - o ^ que se ingresen
- @param:  bit  Contiene como string los siguientes datos  _ | ^
- @param:  lowSteps Contiene el periodo en bajo definido por  round(sampleRate/lowFreq) ejem. 441000/900 = 45
- @param:  highStep Contiene el periodo en alto definido por round(sampleRate/highFreq)
- @return: La cuenta total de desplazamientos dependiendo el bit ingresado.
- 
- **/
-
-
-unsigned long calcBitSteps(const char* bit, int lowSteps, int highSteps){
-    unsigned long TotalTimePhasePerBit = 0;
-    for(int i=0;i<strlen(bit);++i){
-        char c = bit[i];
-        if(c == '_'){
-            TotalTimePhasePerBit+=lowSteps;
-        }else if(c == '^'){
-            TotalTimePhasePerBit+=highSteps;
-        }
-    }
-    
-    return TotalTimePhasePerBit;
-}
-
-
 
 
 
@@ -574,11 +614,6 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
 
 
 
-
-
-
-
-
 /*
                     ATENCION, DEFINIR ESTA CLASE, ESTA SECCION DETIENE LA EJECICION DEL SONIDO
  
@@ -600,12 +635,6 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
         
     
 }
-
-
-
-
-
-
 
 
 
@@ -647,12 +676,7 @@ OSStatus RenderTone(
         if(controller->status){
             
             buffer[frame] = *(controller->PulseToSendInSignal);
-            //printf("qIndex:%lu, frame:%d, value:%f\n", viewController->qIndex, (unsigned int)frame, *(viewController->opDq));
-            
-            
-              //NSLog(@"qIndex:%lu, frame:%d, value:%f\n", controller->qIndex, (unsigned int)frame, *(controller->opDq));
-            
-            
+         
             
             ++controller->PulseToSendInSignal;
             
